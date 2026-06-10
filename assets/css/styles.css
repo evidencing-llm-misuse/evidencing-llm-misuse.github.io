@@ -381,10 +381,14 @@ html[data-theme="dark"] .venue__map iframe { filter: invert(.92) hue-rotate(180d
 }
 .speaker:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 .speaker__avatar {
-  width: 78px; height: 78px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center;
-  font-family: var(--font-disp); font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: .02em;
+  --a: var(--brand); --b: var(--brand-2);
+  width: 92px; height: 92px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center;
+  overflow: hidden;
+  font-family: var(--font-disp); font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: .02em;
   background: linear-gradient(135deg, var(--a), var(--b)); box-shadow: 0 8px 22px color-mix(in srgb, var(--a) 45%, transparent);
 }
+.speaker__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+.speaker__avatar--top img { object-position: center 16%; }
 .speaker__name { font-size: 1.2rem; }
 .speaker__role { color: var(--text); font-weight: 500; margin-top: 4px; font-size: .95rem; }
 .speaker__aff { color: var(--muted); font-size: .9rem; margin-top: 2px; }
