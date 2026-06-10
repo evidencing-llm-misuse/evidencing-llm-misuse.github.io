@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Editor / OS cruft
+*~
+.idea/
+.vscode/
+Thumbs.db
+
+# Tooling
+node_modules/
+.claude/

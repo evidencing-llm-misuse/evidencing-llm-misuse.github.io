@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evidencing LLM Misuse · KDD 2026 Hands-on Tutorial</title>
+  <meta name="description" content="A hands-on forensic tutorial at ACM SIGKDD 2026 on detecting copyright infringement and plagiarism in large language models. ICC Jeju, South Korea · Aug 12, 2026." />
+  <meta name="author" content="Denghui Zhang, Guangwei Zhang, Dongwon Lee" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Evidencing LLM Misuse · KDD 2026 Tutorial" />
+  <meta property="og:description" content="A hands-on forensic tutorial on copyright infringement and plagiarism detection in LLMs. ACM SIGKDD 2026, ICC Jeju, South Korea." />
+  <meta name="theme-color" content="#0b1026" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="nav__brand" href="#top">
+        <span class="nav__mark" aria-hidden="true">🔍</span>
+        <span class="nav__brandtext">
+          <strong>Evidencing LLM Misuse</strong>
+          <em>KDD&nbsp;2026 · Hands-on Tutorial</em>
+        </span>
+      </a>
+
+      <nav class="nav__links" aria-label="Section navigation">
+        <a href="#overview">Overview</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#venue">Venue</a>
+        <a href="#materials">Materials</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#references">References</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="6.9" y2="6.9"/><line x1="17.1" y1="17.1" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="6.9" y2="17.1"/><line x1="17.1" y1="6.9" x2="18.8" y2="5.2"/></g></svg>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="currentColor"/></svg>
+        </button>
+        <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <a id="top"></a>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__grid"></div>
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
+      <div class="hero__noise"></div>
+    </div>
+
+    <div class="container hero__inner">
+      <p class="hero__eyebrow reveal">
+        <span class="dot"></span> ACM SIGKDD 2026 · Lecture-style Hands-on Tutorial
+      </p>
+      <h1 class="hero__title reveal">Evidencing<br/>LLM&nbsp;Misuse</h1>
+      <p class="hero__subtitle reveal">
+        A hands-on forensic tutorial on <strong>copyright infringement</strong>
+        and <strong>plagiarism detection</strong> in large language models.
+      </p>
+
+      <ul class="hero__meta reveal" aria-label="Key facts">
+        <li><span class="hero__meta-ico">📅</span> Wed, Aug&nbsp;12, 2026 · 1:30–4:30&nbsp;PM</li>
+        <li><span class="hero__meta-ico">📍</span> ICC Jeju, South&nbsp;Korea</li>
+        <li><span class="hero__meta-ico">⏱️</span> 3 hours · In person</li>
+      </ul>
+
+      <div class="hero__cta reveal">
+        <a class="btn btn--primary" href="#materials">Explore materials</a>
+        <a class="btn btn--ghost" href="https://arxiv.org/abs/2602.05252" target="_blank" rel="noopener">
+          Read the paper
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 5v14m0 0l5-5m-5 5l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </section>
+
+  <main>
+    <!-- ===================== OVERVIEW ===================== -->
+    <section class="section" id="overview">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker">01 — Overview</span>
+          <h2 class="section__title">When models reproduce protected text, how do you <em>prove</em> it?</h2>
+        </div>
+
+        <div class="overview">
+          <div class="overview__lead reveal">
+            <p>
+              Large language models increasingly reproduce copyrighted passages and paraphrase protected
+              sources — raising urgent legal, ethical, and scientific questions about how to
+              <strong>evidence</strong> such misuse. This tutorial reframes copyright infringement and
+              plagiarism as an <strong>evidence-discovery process</strong> rather than a binary
+              classification task, and equips attendees with practical, reproducible forensic tools to
+              audit models even under black-box access.
+            </p>
+            <p>
+              Across three hours we cover two complementary halves. <strong>Part&nbsp;I — Copyright
+              Infringement</strong> introduces the legal framing and walks through <em>Copyright
+              Detective</em>, an interactive forensic system unifying content-recall testing,
+              paraphrase-level similarity analysis, persuasive-jailbreak probing, and unlearning
+              verification. <strong>Part&nbsp;II — Plagiarism Detection</strong> builds on
+              <em>“Do Language Models Plagiarize?”</em> to examine verbatim, paraphrase, and idea-level
+              plagiarism in model outputs — and how to measure each. Attendees leave able to run these
+              audits themselves.
+            </p>
+          </div>
+
+          <aside class="overview__aside reveal">
+            <div class="statcard">
+              <span class="statcard__num">2</span>
+              <span class="statcard__lbl">forensic tracks: copyright &amp; plagiarism</span>
+            </div>
+            <div class="statcard">
+              <span class="statcard__num">4+</span>
+              <span class="statcard__lbl">detection paradigms, hands-on</span>
+            </div>
+            <div class="statcard">
+              <span class="statcard__num">⬛</span>
+              <span class="statcard__lbl">works with black-box API access</span>
+            </div>
+          </aside>
+        </div>
+
+        <h3 class="overview__subhead reveal">What you’ll learn</h3>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__icon">🔎</div>
+            <h4>Content-recall testing</h4>
+            <p>Surface verbatim memorization through next-passage prediction and direct probing of source texts.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">🧬</div>
+            <h4>Paraphrase-level similarity</h4>
+            <p>Catch leakage that survives rewording using ROUGE, semantic, Jaccard, and MinHash signals.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">🔓</div>
+            <h4>Persuasive-jailbreak probing</h4>
+            <p>Stress-test refusal mechanisms with Ethos, Alliance-Building, and Reciprocity strategies.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">🧠</div>
+            <h4>Unlearning verification</h4>
+            <p>Probe whether “forgotten” content is truly erased via representational drift analysis.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">📑</div>
+            <h4>Plagiarism taxonomy</h4>
+            <p>Distinguish verbatim, paraphrase, and idea-level plagiarism in generated text.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon">⚖️</div>
+            <h4>Evidence-first auditing</h4>
+            <p>Frame infringement as discoverable evidence and produce defensible, reproducible audit reports.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCHEDULE ===================== -->
+    <section class="section section--alt" id="schedule">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker">02 — Schedule</span>
+          <h2 class="section__title">A three-hour, two-part program</h2>
+          <p class="section__note">Tentative agenda · all times in Korea Standard Time (UTC+9) · subject to change.</p>
+        </div>
+
+        <ol class="timeline">
+          <li class="timeline__item reveal">
+            <div class="timeline__time">1:30</div>
+            <div class="timeline__body">
+              <h4>Welcome &amp; motivation</h4>
+              <p>Why LLM copyright and plagiarism are <em>evidence</em> problems, not classification problems. Legal landscape and scope of the tutorial.</p>
+            </div>
+          </li>
+          <li class="timeline__item timeline__item--part reveal">
+            <div class="timeline__time">1:45</div>
+            <div class="timeline__body">
+              <span class="timeline__tag">Part I</span>
+              <h4>Copyright infringement &amp; <em>Copyright Detective</em></h4>
+              <p>Content-recall testing, paraphrase-level similarity, persuasive-jailbreak probing, and unlearning verification — demonstrated live in the interactive forensic system.</p>
+            </div>
+          </li>
+          <li class="timeline__item timeline__item--break reveal">
+            <div class="timeline__time">2:55</div>
+            <div class="timeline__body">
+              <h4>Coffee break</h4>
+            </div>
+          </li>
+          <li class="timeline__item timeline__item--part reveal">
+            <div class="timeline__time">3:10</div>
+            <div class="timeline__body">
+              <span class="timeline__tag timeline__tag--alt">Part II</span>
+              <h4>Plagiarism detection in LLMs</h4>
+              <p>From <em>“Do Language Models Plagiarize?”</em> — measuring verbatim, paraphrase, and idea-level plagiarism, with hands-on detection workflows.</p>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__time">4:15</div>
+            <div class="timeline__body">
+              <h4>Open problems, Q&amp;A &amp; wrap-up</h4>
+              <p>Responsible deployment, limitations of current methods, and where the research goes next.</p>
+            </div>
+          </li>
+          <li class="timeline__item timeline__item--end reveal">
+            <div class="timeline__time">4:30</div>
+            <div class="timeline__body"><h4>End of tutorial</h4></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== VENUE / DATE ===================== -->
+    <section class="section" id="venue">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker">03 — Venue &amp; date</span>
+          <h2 class="section__title">Jeju Island, South Korea</h2>
+        </div>
+
+        <div class="venue">
+          <div class="venue__info reveal">
+            <dl class="deflist">
+              <div><dt>Conference</dt><dd>ACM SIGKDD / KDD 2026</dd></div>
+              <div><dt>Conference dates</dt><dd>August 9–13, 2026</dd></div>
+              <div><dt>Tutorial session</dt><dd>Wednesday, August 12, 2026 · 1:30 PM – 4:30 PM</dd></div>
+              <div><dt>Venue</dt><dd>International Convention Center Jeju (ICC Jeju)<br/>Seogwipo-si, Jeju-do, South Korea</dd></div>
+              <div><dt>Format</dt><dd>Hands-on tutorial · 3 hours · in person</dd></div>
+              <div><dt>Time zone</dt><dd>Korea Standard Time (UTC+9)</dd></div>
+            </dl>
+          </div>
+          <div class="venue__map reveal">
+            <iframe
+              title="Map of ICC Jeju"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=126.4144%2C33.2354%2C126.4344%2C33.2474&layer=mapnik&marker=33.2414116%2C126.4243971"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a class="venue__maplink" href="https://www.openstreetmap.org/?mlat=33.2414116&mlon=126.4243971#map=16/33.2414/126.4244" target="_blank" rel="noopener">View larger map ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MATERIALS ===================== -->
+    <section class="section section--alt" id="materials">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker">04 — Related materials</span>
+          <h2 class="section__title">Slides, code, demos &amp; the proposal</h2>
+        </div>
+
+        <div class="materials">
+          <!-- Proposal -->
+          <a class="matcard matcard--wide reveal" href="https://changhu73.github.io/files/project/kdd-2026-tutorial/kdd_copyright_tutorial_2026.pdf" target="_blank" rel="noopener">
+            <div class="matcard__ico">📄</div>
+            <div class="matcard__txt">
+              <h4>Tutorial proposal <span class="matcard__type">PDF</span></h4>
+              <p>The full accepted proposal for the KDD 2026 tutorial.</p>
+            </div>
+            <span class="matcard__arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <div class="materials__cols">
+            <!-- Copyright track -->
+            <div class="track reveal">
+              <div class="track__head">
+                <span class="track__badge">Part I</span>
+                <h3>LLM Copyright</h3>
+              </div>
+              <a class="link-row" href="https://changhu73.github.io/files/project/kdd-2026-tutorial/slides.pdf" target="_blank" rel="noopener">
+                <span class="link-row__ico">📊</span>
+                <span class="link-row__txt"><strong>Slides</strong><em>Tutorial slides (PDF)</em></span>
+                <span class="link-row__arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="link-row" href="https://github.com/changhu73/Copyright-Detective" target="_blank" rel="noopener">
+                <span class="link-row__ico">💻</span>
+                <span class="link-row__txt"><strong>Code</strong><em>Copyright Detective · GitHub</em></span>
+                <span class="link-row__arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="link-row" href="https://copyright-detective.streamlit.app" target="_blank" rel="noopener">
+                <span class="link-row__ico">🚀</span>
+                <span class="link-row__txt"><strong>Demo</strong><em>Interactive web demo</em></span>
+                <span class="link-row__arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="link-row" href="https://arxiv.org/abs/2602.05252" target="_blank" rel="noopener">
+                <span class="link-row__ico">📝</span>
+                <span class="link-row__txt"><strong>Paper</strong><em>arXiv:2602.05252</em></span>
+                <span class="link-row__arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <!-- Plagiarism track -->
+            <div class="track track--soon reveal">
+              <div class="track__head">
+                <span class="track__badge track__badge--alt">Part II</span>
+                <h3>LLM Plagiarism</h3>
+              </div>
+              <div class="link-row link-row--disabled">
+                <span class="link-row__ico">📊</span>
+                <span class="link-row__txt"><strong>Slides</strong><em>Coming soon</em></span>
+                <span class="badge-soon">Soon</span>
+              </div>
+              <div class="link-row link-row--disabled">
+                <span class="link-row__ico">💻</span>
+                <span class="link-row__txt"><strong>Code</strong><em>Coming soon</em></span>
+                <span class="badge-soon">Soon</span>
+              </div>
+              <div class="link-row link-row--disabled">
+                <span class="link-row__ico">🚀</span>
+                <span class="link-row__txt"><strong>Demo</strong><em>Coming soon</em></span>
+                <span class="badge-soon">Soon</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video -->
+          <div class="video reveal">
+            <h3 class="video__title">🎥 Demonstration video</h3>
+            <div class="video__frame">
+              <iframe
+                src="https://www.youtube.com/embed/z9Lh4kNDHiM"
+                title="Copyright Detective demonstration video"
+                loading="lazy"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPEAKERS ===================== -->
+    <section class="section" id="speakers">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker">05 — Speakers</span>
+          <h2 class="section__title">Your tutors</h2>
+        </div>
+
+        <div class="speakers">
+          <article class="speaker reveal">
+            <div class="speaker__avatar" style="--a:#6366f1;--b:#a855f7">DZ</div>
+            <h4 class="speaker__name">Denghui Zhang</h4>
+            <p class="speaker__role">Assistant Professor</p>
+            <p class="speaker__aff">Stevens Institute of Technology</p>
+            <span class="speaker__tag">Corresponding tutor</span>
+            <div class="speaker__links">
+              <a href="mailto:dzhang42@stevens.edu" title="Email">✉︎ dzhang42@stevens.edu</a>
+            </div>
+          </article>
+
+          <article class="speaker reveal">
+            <div class="speaker__avatar" style="--a:#0ea5e9;--b:#6366f1">GZ</div>
+            <h4 class="speaker__name">Guangwei Zhang</h4>
+            <p class="speaker__role">Algorithm Engineer</p>
+            <p class="speaker__aff">Pine AI</p>
+            <span class="speaker__tag speaker__tag--ghost">Lead author, Copyright Detective</span>
+            <div class="speaker__links">
+              <a href="mailto:kwongwai@19pine.ai" title="Email">✉︎ kwongwai@19pine.ai</a>
+              <a href="https://changhu73.github.io/" target="_blank" rel="noopener" title="Homepage">🌐 Homepage</a>
+            </div>
+          </article>
+
+          <article class="speaker reveal">
+            <div class="speaker__avatar" style="--a:#f59e0b;--b:#ef4444">DL</div>
+            <h4 class="speaker__name">Dongwon Lee</h4>
+            <p class="speaker__role">Professor</p>
+            <p class="speaker__aff">The Pennsylvania State University</p>
+            <span class="speaker__tag speaker__tag--ghost">Plagiarism &amp; trustworthy AI</span>
+            <div class="speaker__links">
+              <a href="mailto:dul13@psu.edu" title="Email">✉︎ dul13@psu.edu</a>
+              <a href="https://pike.psu.edu/dongwon/" target="_blank" rel="noopener" title="Homepage">🌐 Homepage</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== REFERENCES ===================== -->
+    <section class="section section--alt" id="references">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker">06 — References</span>
+          <h2 class="section__title">Read more</h2>
+        </div>
+
+        <ol class="refs">
+          <li class="ref reveal">
+            <p class="ref__cite">
+              Zhang, G., Zhu, J., Qian, C., Gong, N., Mihalcea, R., Xu, Z., He, J., Ma, J., Huang, Y.,
+              Xiao, C., Li, B., Abbasi, A., Lee, D., Ji, H., &amp; Zhang, D. (2026).
+              <strong>Copyright Detective: A Forensic System to Evidence LLMs Flickering Copyright
+              Leakage Risks.</strong> arXiv preprint arXiv:2602.05252 [cs.CL].
+            </p>
+            <a class="ref__link" href="https://arxiv.org/abs/2602.05252" target="_blank" rel="noopener">arxiv.org/abs/2602.05252 ↗</a>
+          </li>
+          <li class="ref reveal">
+            <p class="ref__cite">
+              Lee, J., Le, T., Chen, J., &amp; Lee, D. (2023).
+              <strong>Do Language Models Plagiarize?</strong> In Proceedings of the ACM Web Conference
+              2023 (WWW&nbsp;’23), pp.&nbsp;3637–3647.
+            </p>
+            <a class="ref__link" href="https://doi.org/10.1145/3543507.3583199" target="_blank" rel="noopener">doi.org/10.1145/3543507.3583199 ↗</a>
+          </li>
+        </ol>
+
+        <div class="cite reveal">
+          <div class="cite__head">
+            <h3>Cite the system</h3>
+            <button class="btn btn--small" id="copyBibtex" type="button">Copy BibTeX</button>
+          </div>
+          <pre class="cite__code" id="bibtex">@misc{zhang2026copyrightdetective,
+  title  = {Copyright Detective: A Forensic System to Evidence LLMs
+            Flickering Copyright Leakage Risks},
+  author = {Guangwei Zhang and Jianing Zhu and Cheng Qian and Neil Gong
+            and Rada Mihalcea and Zhaozhuo Xu and Jingrui He and Jiaqi Ma
+            and Chaowei Xiao and Bo Li and Ahmed Abbasi and Dongwon Lee
+            and Heng Ji and Denghui Zhang},
+  year   = {2026},
+  eprint = {2602.05252},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url    = {https://arxiv.org/abs/2602.05252}
+}</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="footer__mark">🔍</span>
+        <div>
+          <strong>Evidencing LLM Misuse</strong>
+          <span>KDD 2026 Hands-on Tutorial · ICC Jeju, South Korea</span>
+        </div>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#overview">Overview</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#materials">Materials</a>
+        <a href="#speakers">Speakers</a>
+        <a href="https://arxiv.org/abs/2602.05252" target="_blank" rel="noopener">Paper ↗</a>
+      </nav>
+      <p class="footer__meta">© 2026 the tutorial organizers · Last updated June 2026.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
