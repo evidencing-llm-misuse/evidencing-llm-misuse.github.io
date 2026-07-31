@@ -373,7 +373,7 @@ html[data-theme="dark"] .venue__map iframe { filter: invert(.92) hue-rotate(180d
 /* =========================================================
    SPEAKERS
    ========================================================= */
-.speakers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.speakers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .speaker {
   text-align: center; padding: 34px 26px; background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); box-shadow: var(--shadow-sm);
@@ -470,7 +470,7 @@ html[data-theme="dark"] .venue__map iframe { filter: invert(.92) hue-rotate(180d
   .overview__aside .statcard { flex: 1 1 30%; }
   .cards { grid-template-columns: 1fr 1fr; }
   .venue { grid-template-columns: 1fr; }
-  .speakers { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+  .speakers { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 760px) {
@@ -496,6 +496,7 @@ html[data-theme="dark"] .venue__map iframe { filter: invert(.92) hue-rotate(180d
   .timeline__item::after { left: 51px; }
   .deflist > div { grid-template-columns: 1fr; gap: 4px; }
   .footer__inner { grid-template-columns: 1fr; }
+  .speakers { grid-template-columns: 1fr; max-width: 400px; margin-inline: auto; }
 }
 
 @media (max-width: 420px) {
