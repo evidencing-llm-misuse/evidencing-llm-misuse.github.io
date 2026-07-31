@@ -3,7 +3,7 @@
 Website for the ACM SIGKDD 2026 hands-on tutorial **“Evidencing LLM Misuse: A Hands-on Forensic
 Tutorial on Copyright Infringement and Plagiarism Detection.”**
 
-🗓️ **Wed, Aug 12, 2026 · 1:30–4:30 PM** &nbsp;·&nbsp; 📍 **ICC Jeju, South Korea**
+🗓️ **Tue, Aug 11, 2026 · 1:30–4:30 PM** &nbsp;·&nbsp; 📍 **ICC Jeju, South Korea**
 
 ## Tutors
 - **Denghui Zhang** — Assistant Professor, Stevens Institute of Technology *(corresponding)*
