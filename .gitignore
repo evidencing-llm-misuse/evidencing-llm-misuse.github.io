@@ -13,3 +13,10 @@ Thumbs.db
 # Tooling
 node_modules/
 .claude/
+
+# Working source decks & drafts in the repo root — NOT for the public site.
+# (Published slides live under assets/slides/ and are tracked explicitly.)
+/*.pptx
+/*.pdf
+/*.key
+/photos/
